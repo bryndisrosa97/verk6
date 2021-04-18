@@ -1,6 +1,8 @@
 // fetch er sjálfgefið hér; next sér um að importa
 
 import { characterFragment } from '../graphql/characterFragment';
+import { IPeopleResponse } from '../types';
+
 
 // Ekki þarf að geyma í env
 const baseUrl = 'https://swapi-graphql.netlify.app/.netlify/functions/index';
@@ -46,10 +48,20 @@ export async function fetchCharacters(after = ''): Promise<any> {
   // Nákvæmlega hvað við sækjum per character er skilgreint í fragmenti
   const query = `
     query($after: String = "") {
-      # TODO query
+      allPeople(first: 10, after: $after) {
+         people {
+          ...character
+        }
+        pageInfo {
+          startCursor
+          endCursor
+          hasNextPage
+        }
+       
+      }
     }
     ${characterFragment}
   `;
 
-  return fetchSwapi<any>(query, { after });
+  return fetchSwapi<IPeopleResponse>(query, { after });
 }
