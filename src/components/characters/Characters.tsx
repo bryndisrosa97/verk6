@@ -4,47 +4,31 @@ import Link from 'next/link';
 
 import s from './Characters.module.scss';
 import { Button } from '../button/Button';
-import { ICharacter,  IPeopleResponse } from '../../types';
+import { ICharacter,  IIgrapqlconnectiontoPeople } from '../../types';
 
 type Props = {
-  peopleResponse: IPeopleResponse;
+  IgrapqlconnectiontoPeople: IIgrapqlconnectiontoPeople;
 
 };
 
-/**
- * Hjálpar týpa ef við erum að filtera burt hugsanleg null gildi:
- *
- * const items: T = itemsWithPossiblyNull
- *  .map((item) => {
- *    if (!item) {
- *      return null;
- *    }
- *    return item;
- *  })
- *  .filter((Boolean as unknown) as ExcludesFalse);
- * items verður Array<T> en ekki Array<T | null>
- */
 type ExcludesFalse = <T>(x: T | null | undefined | false) => x is T;
 
-export function Characters({ peopleResponse }: Props): JSX.Element {
-  // TODO meðhöndla loading state, ekki þarf sérstaklega að villu state
+export function Characters({ IgrapqlconnectiontoPeople }: Props): JSX.Element {
+
   const [loading, setLoading] = useState<boolean>(false);
 
-  // TODO setja grunngögn sem koma frá server
-  const [characters, setCharacters] = useState<Array<ICharacter>>(
-    peopleResponse?.allPeople?.people ?? [],
-  );
-  //setja næstu bls og skilgreina
-  const [nextPage, setNextPage] = useState<string | null>(
-    peopleResponse?.allPeople?.pageInfo.endCursor ?? '',
-  );
+  const [characters, setCharacters] = useState<Array<ICharacter>>(IgrapqlconnectiontoPeople?.allPeople?.people ?? [],);
+  
+  const [nextPage, setNextPage] = useState<string | null>(IgrapqlconnectiontoPeople?.allPeople?.pageInfo.endCursor ?? '',);
 
   const [hasNext, setNext] = useState<boolean>(true);
 
 
+  /*
+  Sækjum fleiri einstaklinga til viðbótar við þá sem birtast nú þegar
+  */
 
-  const fetchMore = async (): Promise<void> => {
-    // TODO sækja gögn frá /pages/api/characters.ts (gegnum /api/characters), ef það eru fleiri
+  const fetchMorePeople = async (): Promise<void> => {
     // (sjá pageInfo.hasNextPage) með cursor úr pageInfo.endCursor
     // byrjum á að setja inn loading 
     setLoading(true);
@@ -68,14 +52,21 @@ export function Characters({ peopleResponse }: Props): JSX.Element {
 
   const json = await result.json();
 
-  const response:  IPeopleResponse = json;
+  const response:  IIgrapqlconnectiontoPeople = json;
+
+  //Sækjum gögn frá /pages/character til að sækja fleiri characera 
   setCharacters([...characters, ...response.allPeople?.people ?? []]);
+  // (sjá pageInfo.hasNextPage) með cursor úr pageInfo.endCursor
   setNextPage(response.allPeople?.pageInfo.endCursor ?? '');
   setNext(response.allPeople?.pageInfo?.hasNextPage ?? true);
+
   setLoading(false);
 
   };
-
+  /*
+  * Hjálpar týpa ef við erum að filtera burt hugsanleg null gildi:
+  */
+ 
   characters.map((character) => {
     if (!character) {
       return null;
@@ -85,7 +76,7 @@ export function Characters({ peopleResponse }: Props): JSX.Element {
 
   return (
     <section className={s.characters}>
-      <ul className={s.characters__list}>
+      <ul className={s.characters__listofcharacters}>
         {characters.map((char, i) => (
           <li key={i}>
             <Link href={`/characters/${char.id}`}>{char.name}</Link>
@@ -93,7 +84,7 @@ export function Characters({ peopleResponse }: Props): JSX.Element {
         ))}
       </ul>
 
-      <Button disabled={loading} onClick={fetchMore}>Fetch more</Button>
+      <Button disabled={loading} onClick={fetchMorePeople}>Fetch more</Button>
     </section>
   );
 }

@@ -1,35 +1,34 @@
-
-.film {
     .film {
         display: flex;
         flex-direction: column;
         
-        &__title {
-          margin-bottom: 1em;
+        &__titleofFilm {
+          margin-bottom: 1.2rem;
+          margin-top: 0.5rem;
         }
       
-        &__content {
+        &__contentOfInfoforthefilm {
           display: flex;
         }
       
-        &__openingCrawl {
-          padding-right: 4em;
-          padding-bottom: 3em;
+        &__openingCrawlforfilm {
+          padding-right: 2.5rem;
+          padding-bottom: 2.8rem;
         }
       
-        &__links {
+        &__linksofcharackterforfilm {
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
         }
       
-        &__link {
-          margin-right: 2em;
+        &__linkofcharackterforfilm {
+          margin-right: 2rem;
         }
       
-        &__line {
-          margin-bottom: 2em;
+        &__linebetweenfilms {
+          margin-bottom: 2rem;
         }
       }
   
-}
+

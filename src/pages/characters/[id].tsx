@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { ErrorPage } from '../../containers/Error';
 import { characterFragment } from '../../graphql/characterFragment';
 import { fetchSwapi } from '../../lib/swapi';
-import { ICharacter,  ICharacterSearch } from '../../types';
+import { ICharacter,  ICharacterSearchFromID } from '../../types';
 
 import { Layout } from '../../components/layout/Layout';
 import { Person } from '../../components/person/Person';
@@ -50,7 +50,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async ({ params
 
   if (id) {
     // Sækir karekter með þetta ID
-    const result = await fetchSwapi<ICharacterSearch>(query, { id });
+    const result = await fetchSwapi<ICharacterSearchFromID>(query, { id });
 
     person = result.person ?? null;
   }

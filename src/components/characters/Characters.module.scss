@@ -1,12 +1,13 @@
 
 .characters {
     
-    &__list {
-          margin-bottom: 1rem;
+    &__listofcharacters {
+          margin-bottom: 1.5rem;
+          margin-top: 0.1rem;
         }
         
         &__loading {
-          margin-bottom: 1rem;
+          margin-bottom: 2rem;
         }
     }
 
