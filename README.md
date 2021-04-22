@@ -1,6 +1,12 @@
 # Vefforritun 2, 2021, verkefni 6
 
-[Kynning á verkefni](https://youtu.be/).
+## keyrsla á verkefninu 
+Verkefnið er keyrt með að gera 
+* npm install
+* npm run dev
+
+
+https://starwarsthemeapp.herokuapp.com/
 
 Tengjast skal SWAPI GraphQL endapunkt og birta upplýsingar um Star Wars myndir (fyrstu sex) ásamt karakterum í þeim.
 
