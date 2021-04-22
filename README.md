@@ -2,6 +2,9 @@
 
 [Kynning á verkefni](https://youtu.be/).
 
+
+https://starwarsthemeapp.herokuapp.com/
+
 Tengjast skal SWAPI GraphQL endapunkt og birta upplýsingar um Star Wars myndir (fyrstu sex) ásamt karakterum í þeim.
 
 ## GraphQL
