@@ -1,6 +1,9 @@
 # Vefforritun 2, 2021, verkefni 6
 
-[Kynning á verkefni](https://youtu.be/).
+## keyrsla á verkefninu 
+Verkefnið er keyrt með að gera 
+* npm install
+* npm run dev
 
 
 https://starwarsthemeapp.herokuapp.com/
