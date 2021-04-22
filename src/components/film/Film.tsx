@@ -3,7 +3,6 @@ import Link from 'next/link';
 import s from './Film.module.scss';
 import { IFilm } from '../../types';
 
-
 type Props = {
   film: IFilm
 };

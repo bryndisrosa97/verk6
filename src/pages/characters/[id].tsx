@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { ErrorPage } from '../../containers/Error';
 import { characterFragment } from '../../graphql/characterFragment';
 import { fetchSwapi } from '../../lib/swapi';
-import { ICharacter,  ICharacterSearchFromID } from '../../types';
+import { ICharacter, ICharacterSearchFromID } from '../../types';
 
 import { Layout } from '../../components/layout/Layout';
 import { Person } from '../../components/person/Person';
@@ -36,7 +36,10 @@ export default function PageComponent(
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async ({ params }) => {
   const id = params?.id as string | undefined;
-
+  /*
+  Það sem sækja um um hvern Character er frekar skilgreint
+  í characterFragment
+  */
   const query = `
     query($id: ID!) {
       person(id: $id) {
@@ -49,7 +52,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async ({ params
   let person = null;
 
   if (id) {
-    // Sækir karekter með þetta ID
+    // Sækir karekter með þetta ákveðna ID
     const result = await fetchSwapi<ICharacterSearchFromID>(query, { id });
 
     person = result.person ?? null;

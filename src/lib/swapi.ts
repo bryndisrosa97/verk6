@@ -3,7 +3,6 @@
 import { characterFragment } from '../graphql/characterFragment';
 import { IIgrapqlconnectiontoPeople } from '../types';
 
-
 // Ekki þarf að geyma í env
 const baseUrl = 'https://swapi-graphql.netlify.app/.netlify/functions/index';
 
@@ -40,12 +39,14 @@ export async function fetchSwapi<T>(
   return json.data as T;
 }
 
-/*Höldum query hér til að geta séð hvernig við erum að sækja
-Núna byrjum við að sækja all people en einungis fyrstu 10 character og 
-geyma hverjir það voru svo hægt sé að smella þeim fyrir aftan 
- Nákvæmlega hvað við sækjum per character er skilgreint í fragmenti
-*/
-export async function fetchCharacters(after = ''): Promise<any> {
+/**
+ * Höldum query hér til að geta séð hvernig við erum að sækja
+ * Núna byrjum við að sækja all people en einungis fyrstu 10 character og
+ * geyma hverjir það voru svo hægt sé að smella þeim fyrir aftan
+ * Nákvæmlega hvað við sækjum per character er skilgreint í fragmenti
+ */
+
+export async function fetchCharacters(after = ''): Promise<IIgrapqlconnectiontoPeople> {
   const query = `
     query($after: String = "") {
       allPeople(first: 10, after: $after) {

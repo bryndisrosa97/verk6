@@ -26,12 +26,12 @@ export default function PageComponent(
 }
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async () => {
-  // TODO sækja karaktera
+  // sækjum karaktera
   const IgrapqlconnectiontoPeople = await fetchCharacters();
 
   return {
     props: {
-      IgrapqlconnectiontoPeople: IgrapqlconnectiontoPeople,
+      IgrapqlconnectiontoPeople,
     },
   };
 };

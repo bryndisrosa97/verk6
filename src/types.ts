@@ -18,9 +18,9 @@ interface IAllFilms {
   films: Array<IFilm>;
 }
 
-/*
-Þær upplýsingar sem við viljum fá frá hverri mynd
-ásamt tenginguna í þá karaktera í þeim 
+/**
+ * Þær upplýsingar sem við viljum fá frá hverri mynd
+ * ásamt tenginguna í þá karaktera í þeim
 */
 
 export interface IFilm {
@@ -31,16 +31,16 @@ export interface IFilm {
   characterConnection: IcharacterConnection
 }
 
-/*
-Tenging í characters 
+/**
+ * Tenging í characters
 */
 export interface IcharacterConnection {
   characters: Array<ICharacter>
 }
 
-/*
-Upplýsingarnar sem við þurfum um hvern 
-character frá swapi-grapql
+/**
+ * Upplýsingarnar sem við þurfum um hvern
+ * character frá swapi-grapql
 */
 
 export interface ICharacter {
@@ -61,17 +61,17 @@ export interface ICharactersFromGraphQL {
   allPeople?: IAllPeople
 }
 
-/*
-Tenging við alla karaktera 
+/**
+ * Tenging við alla karaktera
 */
 
 export interface IIgrapqlconnectiontoPeople {
   allPeople: IAllPeople;
 }
 
-/*
-Hér sækjum við bæði fylki með öllum characterunum 
-ásamt page info
+/**
+ * Hér sækjum við bæði fylki með öllum characterunum
+ * ásamt page info
 */
 
 export interface IAllPeople {
@@ -84,6 +84,3 @@ export interface IPageInfo {
   endCursor: string
   hasNextPage: boolean
 }
-
-
-
