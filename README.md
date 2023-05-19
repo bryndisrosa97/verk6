@@ -6,7 +6,10 @@ Verkefnið er keyrt með að gera
 * npm run dev
 
 
-https://starwarsthemeapp.herokuapp.com/
+https://starwarsthemeapp.herokuapp.com
+
+![image](https://github.com/bryndisrosa97/verk6/assets/61384036/1e96cca7-6fee-47c1-9b82-5c10a1e0b3bc)
+
 
 Tengjast skal SWAPI GraphQL endapunkt og birta upplýsingar um Star Wars myndir (fyrstu sex) ásamt karakterum í þeim.
 
@@ -56,41 +59,4 @@ Gefinn er grunnur, með uppbyggingu á verkefni, byggt á `create-next-app` ása
 
 Ekki ætti að þurfa að búa til fleiri componenta en það er leyfilegt. Ekki þarf að útbúa _container_ component, en það er leyfilegt.
 
-## Mat
 
-* 20% – Forsíða sett upp með gögnum úr GraphQL endapunkti
-* 20% – Yfirlitssíða karaktera sett upp með gögnum úr GraphQL endapunkti
-* 20% – Hægt að sækja fleiri karaktera skv. forskrift
-* 20% – Hægt að sækja nánari upplýsingar um hvern karakter
-* 20% – Verkefni sett upp á Heroku, TypeScript týpur settar upp, og engar TypeScript/lint villur og almennt snyrtilegur kóði
-
-## Sett fyrir
-
-Verkefni sett fyrir í fyrirlestri fimmtudaginn 25. mars 2021.
-
-## Skil
-
-Skila skal í Canvas í seinasta lagi fyrir lok dags laugardaginn 10. apríl 2021.
-
-Skilaboð skulu innihalda slóð á Heroku og slóð á GitHub repo fyrir verkefni, og dæmatímakennurum skal hafa verið boðið í repo ([sjá leiðbeiningar](https://docs.github.com/en/free-pro-team@latest/github/setting-up-and-managing-your-github-user-account/inviting-collaborators-to-a-personal-repository)). Notendanöfn þeirra eru:
-
-* `jonnigs`
-* `mimiqkz`
-* `Steinalicious`
-* `zurgur`
-
-Hver dagur eftir skil dregur verkefni niður um 10%, allt að 20% ef skilað mánudaginn 12. apríl 2021 en þá lokar fyrir skil.
-
-## Einkunn
-
-Sett verða fyrir 6 minni verkefni þar sem 5 bestu gilda 8% hvert, samtals 40% af lokaeinkunn.
-
-Sett verða fyrir tvö hópverkefni þar sem hvort um sig gildir 10%, samtals 20% af lokaeinkunn.
-
----
-
-> Útgáfa 0.1
-
-| Útgáfa | Breyting |
-|--------|----------|
-| 0.1    | Fyrsta útgáfa |
