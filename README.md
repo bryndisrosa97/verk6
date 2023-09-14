@@ -1,7 +1,60 @@
-# Vefforritun 2, 2021, verkefni 6
+# Star Wars GraphQL Explorer
 
-## keyrsla á verkefninu 
-Verkefnið er keyrt með að gera 
+## Project Overview
+
+The Star Wars GraphQL Explorer is a web application designed to retrieve and display information about the first six Star Wars movies and their characters. It connects to the SWAPI (Star Wars API) GraphQL endpoint to access this data.
+
+## Technology Stack
+
+The project is built using the following technologies:
+
+- **GraphQL**: The application leverages GraphQL to efficiently fetch and present data. You can explore and query the available data using the GraphiQL interface [here](https://graphql.org/swapi-graphql/).
+
+- **GraphQL API Endpoint**: The GraphQL API endpoint can be accessed at [https://swapi-graphql.netlify.app/.netlify/functions/index](https://swapi-graphql.netlify.app/.netlify/functions/index). Data is fetched from this endpoint by sending POST requests with query parameters "query" and "variables." A template for this is provided.
+
+- **TypeScript and Types**: TypeScript is used throughout the project, with specific settings configured in `tsconfig.json`, including setting "strict" to true. Additionally, ESLint rules are applied, which can be customized as needed. Every piece of data is accompanied by corresponding types or interfaces, ensuring strong type-checking.
+
+## Pages and Functionality
+
+The Star Wars GraphQL Explorer includes the following main pages and functionality:
+
+### Films (Homepage)
+
+- This page displays data from the "allFilms" query in the GraphQL API.
+- Information such as movie title, episode ID, opening crawl text, and a list of characters featured in the movie is presented.
+- You can also find links to access detailed information about each character.
+
+### Characters
+
+- The "/characters" page displays the first 10 characters from the Star Wars universe (retrieved via "allPeople(first: 10)" GraphQL query).
+- A button allows users to load the next set of 10 characters, and this process can be repeated until all characters are displayed.
+- Importantly, a distinct fetch call is made from the frontend to the backend via "/pages/api/characters.ts" to retrieve data. This ensures that the initial data is server-side rendered for optimal performance.
+
+### Character Details ("/characters/[id]")
+
+- This page presents detailed information about a selected character.
+- Key character attributes such as birth year, eye color, hair color, height, and mass are provided.
+- In case a character is not found, a 404 error is displayed.
+
+## Data Retrieval with getServerSideProps
+
+- Instead of using getStaticProps, the Star Wars GraphQL Explorer employs getServerSideProps. This decision aligns with the course's recommendations and best practices.
+- Data fetched within getServerSideProps is prepared on the server-side (similar to Express), enhancing data security and efficiency.
+
+## Styling and Layout
+
+- The project uses Sass for styling, following a component-based styling approach.
+- To maintain clean and organized styling, separate Sass files are created for each component.
+
+## Tools and Frameworks
+
+- The foundation of the project is built on the create-next-app framework, enriched with TypeScript.
+- The code includes comments and explanations to facilitate project understanding and maintainability.
+
+Feel free to create additional components if needed, and while a container component is not mandatory, you are welcome to implement one as required.
+
+## How to run the project
+In order to run the project you have to include
 * npm install
 * npm run dev
 
@@ -11,52 +64,7 @@ https://starwarsthemeapp.herokuapp.com
 ![image](https://github.com/bryndisrosa97/verk6/assets/61384036/1e96cca7-6fee-47c1-9b82-5c10a1e0b3bc)
 
 
-Tengjast skal SWAPI GraphQL endapunkt og birta upplýsingar um Star Wars myndir (fyrstu sex) ásamt karakterum í þeim.
 
-## GraphQL
 
-Hægt er að nálgast GraphiQL viðmót til að skoða gögnin á https://graphql.org/swapi-graphql/
-
-Endapunktur fyrir GraphQL API má nálgast á https://swapi-graphql.netlify.app/.netlify/functions/index
-
-Ekki þarf að nota neitt annað en `POST` á endapunktinn með gögnum í querystring breytunum `query` og `variables`. Sjá gefinn grunn.
-
-## TypeScript og týpur
-
-Nota skal TypeScript og þær stillingar sem gefnar eru í `tsconfig.json` (sér í lagi skal `strict` vera `true`) og með eslint reglum í `.eslintrc.js`. Slökkva má á einstaka reglum ef ástæða er til.
-
-Öll gögn skulu vera með týpum og þarf því að útbúa `type` eða `interface` fyrir gögn sem koma úr GraphQL.
-
-## Síður, gögn og virkni
-
-Í haus skulu vera hlekkir á `Films` (forsíða) og `Characters` (`/characters`).
-
-Forsíða skal birta gögn úr `allFilms` í GraphQL API, sér í lagi `title`, `episodeID`, `openingCrawl` og þá karaktera sem koma fram í myndinni ásamt hlekk á nánari upplýsingar um viðkomandi. Sjá gefinn grunn.
-
-`/characters` skal birta fyrstu 10 karaktera úr myndunum (`allPeople(first: 10)`) en einnig takka sem leyfir að sækja næstu 10 o.s.fr. þar til búið er að birta alla karaktera.
-
-Ekki skal nota sama fall og síða (`/pages/characters/index.tsx`) heldur skal gera sérstakt `fetch` kall af framenda á bakenda gegnum `/pages/api/characters.ts`. Þetta þýðir að fyrstu gögnin verða _server-side renderuð_ og ekki bara aðgengileg af framenda eftir að React forrit keyrir.
-
-`/characters/[id]` skal birta upplýsingar um valinn karakter (úr `person`) eða 404 villu. Birta skal a.m.k. `birthYear`, `eyeColor`, `hairColor`, `height` og `mass`.
-
-## `getServerSideProps`
-
-Þó svo að NextJS skjölun ýti mjög undir að `getStaticProps` sé notað, þá munum við nota `getServerSideProps` sem passar inn í umfjöllun áfangans. Það sem skilað er úr því falli verður útbúið á _bakenda_ (líkt og með Express) og gert aðgengilegt React forriti á _framenda_.
-
-Við getum því gert köll í API/gagnagrunn innan `getServerSideProps` án þess að það keyri á framenda.
-
-[Sjá nánar í skjölun](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering).
-
-## Útlit
-
-[Sjá útlit](./utlit).
-
-Setja skal upp Sass og útfæra útlit per component í Sass skrá fyrir hann.
-
-## Tæki og tól
-
-Gefinn er grunnur, með uppbyggingu á verkefni, byggt á `create-next-app` ásamt TypeScript. Reynt hefur verið að setja slatta af athugasemdum til að hjálpa við heildarskipulag og skilning.
-
-Ekki ætti að þurfa að búa til fleiri componenta en það er leyfilegt. Ekki þarf að útbúa _container_ component, en það er leyfilegt.
 
 
